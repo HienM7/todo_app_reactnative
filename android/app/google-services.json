@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "756244433485",
+    "firebase_url": "https://fir-example-39af6.firebaseio.com",
+    "project_id": "fir-example-39af6",
+    "storage_bucket": "fir-example-39af6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756244433485:android:403e1f65f7ca942aa96a04",
+        "android_client_info": {
+          "package_name": "com.rn_typescript"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756244433485-ncsvmsqk4baa49gtr9u70dh54huun6dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmcdOba77LiKOU8AV4Nf1cVVSgZ0EBEd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756244433485-ncsvmsqk4baa49gtr9u70dh54huun6dc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756244433485:android:130482f68e2f21b7a96a04",
+        "android_client_info": {
+          "package_name": "com.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756244433485-ncsvmsqk4baa49gtr9u70dh54huun6dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmcdOba77LiKOU8AV4Nf1cVVSgZ0EBEd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756244433485-ncsvmsqk4baa49gtr9u70dh54huun6dc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
