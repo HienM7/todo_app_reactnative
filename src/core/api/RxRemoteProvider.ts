@@ -5,7 +5,7 @@ import axios, {
   AxiosError,
 } from 'axios';
 import { Observable, Observer } from 'rxjs';
-import { RemoteException } from '../error';
+import { RemoteException } from '@core';
 
 export interface RxRemoteProvider {
   /**

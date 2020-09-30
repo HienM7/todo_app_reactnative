@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Container } from 'native-base';
 import firestore from '@react-native-firebase/firestore';
-import { Todo } from 'src/core/entity';
+import { Todo } from '@core';
 import { scale } from '@shared-view';
 
 export interface Props {

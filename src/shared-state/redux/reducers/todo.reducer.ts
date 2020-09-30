@@ -1,5 +1,5 @@
-import { TodoState } from "../../../core/type";
-import { GET_TODO_LIST, GET_TODO_LIST_FAIL, GET_TODO_LIST_SUCCESS } from "../actions";
+import { TodoState } from '@core';
+import { GET_TODO_LIST, GET_TODO_LIST_FAIL, GET_TODO_LIST_SUCCESS } from '../actions';
 
 const INITIAL_STATE: TodoState = {
   isLoading: false,
@@ -9,7 +9,6 @@ const INITIAL_STATE: TodoState = {
 
 // reducer
 export const todoReducer = (state = INITIAL_STATE, action: any) => {
-  console.log('action: ', action);
   switch (action.type) {
     case GET_TODO_LIST:
       return Object.assign(

@@ -1,4 +1,4 @@
-import { Todo } from "../entity";
+import { Todo } from '@core';
 
 export type TodoState = {
   isLoading: boolean;
