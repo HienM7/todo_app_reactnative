@@ -18,7 +18,7 @@ export interface Props {
   navigation?: any;
   isLoading?: boolean;
   data?: Array<Todo>;
-  doRegister: () => void;
+  doRegister: (email: any, password: any, username: any) => void;
 }
 
 export interface State {
@@ -39,19 +39,35 @@ export class RegisterComponent extends Component<Props, State> {
     };
   }
 
-  // const doRegister
+  setValue(property: string, value: any) {
+    this.setState({
+      ...this.state,
+      [property]: value
+    });
+  }
+
+  checkAndDoRegister = (email :any, password: any, confirmPassword: any, username: any) => {
+    const { doRegister } = this.props;
+    if (!email || !password || !confirmPassword || !username ) {
+      return;
+    }
+    if (password !== confirmPassword) {
+      return;
+    }
+    doRegister(email, password, username);
+  }
 
   render() {
     const {username, password, confirmPassword, email} = this.state;
-    // const {doRegister} = this.props;
+    const {doRegister} = this.props;
     return (
       <Container style={styles.container}>
         <View style={{flex: 1}}>
-          <TextInput value={username} placeholder="username"/>
-          <TextInput value={email} placeholder="email"/>
-          <TextInput value={password} placeholder="password"/>
-          <TextInput value={confirmPassword} placeholder="confirm your password"/>
-          <TouchableOpacity >
+          <TextInput value={username} onChangeText={(value) => this.setValue('username', value)} placeholder="username"/>
+          <TextInput value={email} onChangeText={(value) => this.setValue('email', value)} placeholder="email"/>
+          <TextInput value={password} onChangeText={(value) => this.setValue('password', value)} placeholder="password"/>
+          <TextInput value={confirmPassword} onChangeText={(value) => this.setValue('confirmPassword', value)} placeholder="confirm your password"/>
+          <TouchableOpacity onPress={() => this.checkAndDoRegister(email, password, confirmPassword, username)} >
             <Text>
               Login
             </Text>
