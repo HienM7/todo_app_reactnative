@@ -59,7 +59,6 @@ export class RegisterComponent extends Component<Props, State> {
 
   render() {
     const {username, password, confirmPassword, email} = this.state;
-    const {doRegister} = this.props;
     return (
       <Container style={styles.container}>
         <View style={{flex: 1}}>
