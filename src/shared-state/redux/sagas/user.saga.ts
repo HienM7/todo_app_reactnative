@@ -9,13 +9,13 @@ function* doRegister(action: object) {
     const { email, password, username }: {email?: any; password?: any; username?: any } = action;
     yield auth().createUserWithEmailAndPassword(email, password);
     const user = yield auth().currentUser;
-    yield firestore().collection('users').doc(user.uid)
+    yield firestore().collection('Users').doc(user.uid)
       .set({
           username: username,
           email: email,
           password: password,
       })
-    yield put({ type: REGISTER_SUCCESS, email, password});
+    yield put({ type: REGISTER_SUCCESS, username});
   }
   catch (error) {
     yield put({ type: REGISTER_FAIL, error: error });

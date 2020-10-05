@@ -25,7 +25,9 @@ export const userReducer = (state = INITIAL_STATE, action: any) => {
         state,
         {
           isLoading: false,
-          data: action.data
+          isLogged: true,
+          username: action.username
+
         }
       );
     case REGISTER_FAIL:
