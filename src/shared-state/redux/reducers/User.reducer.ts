@@ -1,17 +1,16 @@
-import {} from '@core'
-import { State } from 'react-native-gesture-handler';
-import { Action } from 'rxjs/internal/scheduler/Action';
-import {GET_LOGIN, GET_LOGIN_SUCCESS, GET_LOGIN_FAIL, getLogin} from '../actions';
+import { UserState } from '@core';
+import {DO_LOGIN, DO_LOGIN_SUCCESS, DO_LOGIN_FAIL, } from '../actions';
 
-const INITIAL_STATE: = {
+const INITIAL_STATE: UserState ={
     isLoading: false,
-    data: [],
-    error: {},
+    isLogged: false,
+    username: "",
 };
 
 export const loginReducer = (state = INITIAL_STATE, action: any) => {
+    console.log(action);
     switch(action.type) {
-        case GET_LOGIN: 
+        case DO_LOGIN: 
         return Object.assign(
             {},
             state,
@@ -19,16 +18,17 @@ export const loginReducer = (state = INITIAL_STATE, action: any) => {
                 isLoading: true
             }
         );
-        case GET_LOGIN_SUCCESS:
+        case DO_LOGIN_SUCCESS:
             return Object.assign(
                 {},
                 state,
                 {
                     isLoading: false,
-                    data: action.data
+                    isLogged: true,
+                    username: action.username,
                 }
             );
-        case GET_LOGIN_FAIL:
+        case DO_LOGIN_FAIL:
             return Object.assign(
                 {},
                 state,

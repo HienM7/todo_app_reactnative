@@ -5,11 +5,15 @@ import { scale, verticalScale } from '@shared-view';
 import auth from '@react-native-firebase/auth';
 
 export interface Props {
+  isLoading?: boolean,
+  isLogged?: boolean,
+  username?: string
+  doLogin: (email: any, password: any) => void;
 }
 
 export interface State {
-  txtEmail: string;
-  txtPassword: string;
+  email: string;
+  password: string;
 }
 
 
@@ -17,37 +21,39 @@ export class LoginComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      txtEmail: '',
-      txtPassword: '',
+      email: '',
+      password: '',
     }
   }
 
-  getLogin = () => {
-    auth()
-      .signInWithEmailAndPassword(this.state.txtEmail, this.state.txtPassword)
-      .then(() => {
-        Alert.alert(
-          "Notifycation",
-          "Logged in successfully",
-          [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-        );  
-      })
-      .catch(error => {
-        Alert.alert(
-          "Notifycation",
-          "Logged failed",
-          [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-        );  
-      });
-  }
+  // doLogin = () => {
+  //   auth()
+  //     .signInWithEmailAndPassword(this.state.txtEmail, this.state.txtPassword)
+  //     .then(() => {
+  //       Alert.alert(
+  //         "Notifycation",
+  //         "Logged in successfully",
+  //         [
+  //           { text: "OK", onPress: () => console.log("OK Pressed") }
+  //         ],
+  //         { cancelable: false }
+  //       );  
+  //     })
+  //     .catch(error => {
+  //       Alert.alert(
+  //         "Notifycation",
+  //         "Logged failed",
+  //         [
+  //           { text: "OK", onPress: () => console.log("OK Pressed") }
+  //         ],
+  //         { cancelable: false }
+  //       );  
+  //     });
+  // }
 
   render() {
+    const { doLogin, isLoading, isLogged, username } = this.props;
+    console.log(isLoading, isLogged, username);
     return (
       <Container style={styles.container}>
         <View>
@@ -60,8 +66,8 @@ export class LoginComponent extends Component<Props, State> {
             <TextInput
               style={styles.userInput}
               placeholder='Enter your email'
-              onChangeText={txtEmail => this.setState({ txtEmail })}
-              value={this.state.txtEmail}>
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}>
             </TextInput>
           </View>
           <View>
@@ -70,8 +76,8 @@ export class LoginComponent extends Component<Props, State> {
               <TextInput
                 style={styles.userInput}
                 placeholder='Enter your password'
-                onChangeText={(text) => this.setState({ txtPassword: text })}
-                value={this.state.txtPassword}>
+                onChangeText={(text) => this.setState({ password: text })}
+                value={this.state.password}>
               </TextInput>
             </View>
 
@@ -81,7 +87,7 @@ export class LoginComponent extends Component<Props, State> {
             <View>
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => { this.getLogin() }}>
+                onPress={() => doLogin(this.state.email, this.state.password)}>
                 <Text style={styles.buttonText}>Log In</Text>
               </TouchableOpacity>
             </View>
