@@ -2,11 +2,17 @@ import { put, takeLatest } from 'redux-saga/effects';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { REGISTER, REGISTER_SUCCESS, REGISTER_FAIL } from '../actions';
-import { User } from 'src/core/entity';
 
-function* doRegister(action: object) {
+export interface Action{
+  type: string,
+  email: string,
+  password: string,
+  username: string,
+}
+
+function* doRegister(action: Action) {
   try {
-    const { email, password, username }: {email?: any; password?: any; username?: any } = action;
+    const { email, password, username } = action;
     yield auth().createUserWithEmailAndPassword(email, password);
     const user = yield auth().currentUser;
     yield firestore().collection('Users').doc(user.uid)
@@ -14,7 +20,7 @@ function* doRegister(action: object) {
           username: username,
           email: email,
           password: password,
-      })
+      });
     yield put({ type: REGISTER_SUCCESS, username});
   }
   catch (error) {
