@@ -3,7 +3,6 @@ import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Colors } from '@resources';
 import { verticalScale } from '@shared-view'
 
-
 export interface Props {
     title: string;
     style: Object;
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.RED,
     },
-
     text: {
         fontSize: verticalScale(18),
         color: Colors.WHITE,
