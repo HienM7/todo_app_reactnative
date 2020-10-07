@@ -9,6 +9,7 @@ export interface Props {
     onChangeText?: (text: string) => void;
     value?: string;
 }
+
 export const CustomInput = ({ label, placeholder, secureTextEntry, onChangeText, value }: Props) => {
     return (
         <View>
@@ -40,5 +41,4 @@ const styles = StyleSheet.create({
         color: '#313131',
         marginTop: scale(40),
     }
-
 });
