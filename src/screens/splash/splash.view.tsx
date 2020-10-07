@@ -25,6 +25,7 @@ export class SplashComponent extends Component<Props> {
       }, 2000)
     )
   }
+  
   async componentDidMount() {
     const data = await this.performTimeConsumingTask();
     if (data !== null) {
