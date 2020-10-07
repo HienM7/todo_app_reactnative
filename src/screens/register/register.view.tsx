@@ -4,21 +4,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
-  Alert,
+  TextInput
 } from 'react-native';
 import {Container} from 'native-base';
-import firestore from '@react-native-firebase/firestore';
-import {Todo} from 'src/core/entity';
 import {scale} from '@shared-view';
-import {TextInput} from 'react-native-gesture-handler';
 
 export interface Props {
-  navigation?: any;
-  isLoading?: boolean;
-  data?: Array<Todo>;
-  doRegister: (email: any, password: any, username: any) => void;
+  doRegister: (email: string, password: string, username: string) => void;
 }
 
 export interface State {
@@ -46,7 +38,7 @@ export class RegisterComponent extends Component<Props, State> {
     });
   }
 
-  checkAndDoRegister = (email :any, password: any, confirmPassword: any, username: any) => {
+  checkAndDoRegister = (email :string, password: string, confirmPassword: string, username: string) => {
     const { doRegister } = this.props;
     if (!email || !password || !confirmPassword || !username ) {
       return;
