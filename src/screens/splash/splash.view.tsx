@@ -29,7 +29,7 @@ export class SplashComponent extends Component<Props> {
   async componentDidMount() {
     const data = await this.performTimeConsumingTask();
     if (data !== null) {
-      this.props.navigation.navigate('Todo');
+      this.props.navigation.navigate('GetStarted');
     }
   }
 
