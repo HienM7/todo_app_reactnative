@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, TextComponent, StyleSheet, Alert } from 'react-native';
-import { Button, Container, Right, Row } from 'native-base';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Container } from 'native-base';
 import { scale, verticalScale } from '@shared-view';
-import auth from '@react-native-firebase/auth';
 
 export interface Props {
   isLoading?: boolean,
   isLogged?: boolean,
   username?: string
-  doLogin: (email: any, password: any) => void;
+  doLogin: (email: string, password: string) => void;
 }
 
 export interface State {
   email: string;
   password: string;
 }
-
 
 export class LoginComponent extends Component<Props, State> {
   constructor(props: Props) {
@@ -97,6 +95,7 @@ export class LoginComponent extends Component<Props, State> {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     paddingRight: scale(20),
@@ -104,30 +103,30 @@ const styles = StyleSheet.create({
     fontFamily: 'AvenirNextRoundedPro-Demi',
   },
   item: {
-    height: scale(60),
+    height: verticalScale(50),
     width: '100%',
-    fontSize: scale(32),
-    marginTop: scale(50),
+    fontSize: verticalScale(32),
+    marginTop: verticalScale(50),
     color: '#313131',
   },
   itemText: {
-    height: scale(21),
+    height: verticalScale(24),
     width: '100%',
-    fontSize: scale(16),
+    fontSize: verticalScale(18),
     color: '#9B9B9B',
   },
   userInput: {
     color: '#313131',
     width: '100%',
-    height: scale(50),
-    fontSize: scale(16),
+    height: verticalScale(50),
+    fontSize: verticalScale(18),
     borderBottomColor: '#707070',
     borderBottomWidth: scale(1 / 2),
   },
   userText: {
-    height: scale(27),
+    height: verticalScale(27),
     width: '100%',
-    fontSize: scale(20),
+    fontSize: verticalScale(22),
     color: '#313131',
     marginTop: scale(40),
   },
@@ -138,24 +137,24 @@ const styles = StyleSheet.create({
   },
   textForgot: {
     color: '#313131',
-    fontSize: scale(18),
-    height: scale(24),
+    fontSize: verticalScale(20),
+    height: verticalScale(24),
     marginTop: scale(20)
   },
   button: {
     backgroundColor: '#F96060',
     width: '100%',
-    height: scale(48),
+    height: verticalScale(48),
     borderRadius: scale(6),
-    fontSize: scale(30),
+    fontSize: verticalScale(32),
     marginTop: scale(50),
     justifyContent: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
-    height: scale(50),
+    height: verticalScale(50),
     width: '100%',
-    fontSize: scale(18),
+    fontSize: verticalScale(20),
     padding: scale(10),
     textAlign: 'center',
   }

@@ -5,6 +5,5 @@ export default function* rootSaga() {
   yield all([
     fork(watchGetTodoList),
     fork(watchDoLogin),
-
   ]);
 }

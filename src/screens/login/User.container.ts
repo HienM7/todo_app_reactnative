@@ -12,7 +12,7 @@ export const LoginContainer = connect(
   },
   (dispatch: any) => {
     return {
-      doLogin: (email: any, password: any) => {
+      doLogin: (email: string, password: string) => {
         dispatch(doLogin(email, password))
       }
     }

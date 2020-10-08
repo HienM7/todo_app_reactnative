@@ -5,7 +5,7 @@ const INITIAL_STATE: TodoState = {
   isLoading: false,
   data: [],
   error: {},
-}; 
+};
 
 // reducer
 export const todoReducer = (state = INITIAL_STATE, action: any) => {

@@ -8,7 +8,6 @@ const INITIAL_STATE: UserState ={
 };
 
 export const loginReducer = (state = INITIAL_STATE, action: any) => {
-    console.log(action);
     switch(action.type) {
         case DO_LOGIN: 
         return Object.assign(
