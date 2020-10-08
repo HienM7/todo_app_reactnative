@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
-  Alert
+  Alert, BackHandler
 } from 'react-native';
 import { Container } from 'native-base';
 import firestore from '@react-native-firebase/firestore';
@@ -31,6 +31,27 @@ export class TodoComponent extends Component<Props, State> {
       todoList: []
     }
   }
+
+  backAction = () => {
+    Alert.alert("Hold on!", "Are you sure you want to go back?", [
+      {
+        text: "Cancel",
+        onPress: () => null,
+        style: "cancel"
+      },
+      { text: "YES", onPress: () => BackHandler.exitApp() }
+    ]);
+    return true;
+  };
+
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.backAction);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+  }
+
 
   addNewTodo = (item: Todo) => {
     firestore()
