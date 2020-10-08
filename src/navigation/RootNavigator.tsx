@@ -10,6 +10,11 @@ export const RootNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="GetStarted"
+          component={GetStartedContainer}
+          options={{ title: 'GetStarted', headerShown: false }}
+        />
+        <Stack.Screen
           name="Todo"
           component={TodoContainer}
           options={{ title: 'Todo', headerShown: false }}

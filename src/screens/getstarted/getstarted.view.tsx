@@ -5,13 +5,17 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ImageBackground
+  Dimensions
 } from 'react-native';
 import { Container } from 'native-base';
-import { heightPercentageToDP, scale, verticalScale, widthPercentageToDP } from '@shared-view';
+import { verticalScale, widthPercentageToDP } from '@shared-view';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { Assets } from '@react-navigation/stack';
-import { BACKGROUND_STARTED, BACKGROUND_STARTED_2, BACKGROUND_STARTED_3, SLIDE_STARTED, SLIDE_STARTED_2, SLIDE_STARTED_3 } from '@assets';
+import {
+  BACKGROUND_STARTED, BACKGROUND_STARTED_2, BACKGROUND_STARTED_3,
+  SLIDE_STARTED, SLIDE_STARTED_2, SLIDE_STARTED_3
+} from '@assets';
+
+const { width, height } = Dimensions.get('window');
 
 export interface Props {
   navigation?: any;
@@ -20,6 +24,7 @@ export interface Props {
 const data = [
   {
     key: 'one',
+    index: 1,
     title: 'Welcome to aking',
     text: 'Whats going to happen tomorrow?',
     image: SLIDE_STARTED,
@@ -27,6 +32,7 @@ const data = [
   },
   {
     key: 'two',
+    index: 2,
     title: 'Work happens',
     text: 'Get notified when work happens.',
     image: SLIDE_STARTED_2,
@@ -34,6 +40,7 @@ const data = [
   },
   {
     key: 'three',
+    index: 3,
     title: 'Tasks and assign',
     text: 'Task and assign them to colleagues.',
     image: SLIDE_STARTED_3,
@@ -44,50 +51,53 @@ const data = [
 type Item = typeof data[0];
 
 export class GetStartedComponent extends Component<Props> {
+  slider: any;
+
   constructor(props: Props) {
     super(props);
   }
 
-  _renderItem = ({ item }: {item : Item}) => {
+  _renderItem = ({ item }: { item: Item }) => {
     return (
       <Container style={styles.container}>
         <View style={styles.slide}>
-          <Image source={item.image} />
+          <Image source={item.image} resizeMode={'contain'} />
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.text}>{item.text}</Text>
         </View>
         <View style={styles.background}>
-          <ImageBackground source={item.background} style={styles.backgroundImage}>
-            <TouchableOpacity onPress={() => {this.props.navigation.navigate('')}} style={styles.gs}>
+          <Image source={item.background} style={styles.backgroundImage} resizeMode={'stretch'} />
+          <View>
+            <TouchableOpacity activeOpacity={1} onPress={() => item.index != 3 ? this.slider?.goToSlide(item.index) : {}} style={styles.gs}>
               <Text style={styles.textGs}>Get Started</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {this.props.navigation.navigate('')}} style={styles.lg}>
+            <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Todo') }} style={styles.lg}>
               <Text style={styles.textLg}>Log In</Text>
             </TouchableOpacity>
-          </ImageBackground>
+          </View>
         </View>
       </Container>
     );
   }
 
   render() {
-      return (
-        <AppIntroSlider 
-          renderItem={this._renderItem} 
-          data={data} 
-          showNextButton={false}
-          dotStyle={styles.dot}
-          activeDotStyle={styles.activeDot}
-          showDoneButton={false}
-        />
-      );
-    }
+    return (
+      <AppIntroSlider
+        ref={(ref) => (this.slider = ref)}
+        renderItem={this._renderItem}
+        data={data}
+        showNextButton={false}
+        dotStyle={styles.dot}
+        activeDotStyle={styles.activeDot}
+        showDoneButton={false}
+      />
+    );
   }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: scale(10),
     justifyContent: 'center',
   },
   slide: {
@@ -97,39 +107,46 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    margin: 10
+    fontSize: verticalScale(16),
+    color: '#313131',
+    opacity: 0.8,
+    marginVertical: verticalScale(5)
   },
   title: {
     textAlign: 'center',
-    margin: 5
+    fontSize: verticalScale(22),
+    color: '#313131',
+    marginTop: verticalScale(20),
   },
   background: {
-    flex: 1
-  },
-  backgroundImage: { 
     flex: 1,
-    scaleX: scale(1),
-    scaleY: scale(1),
-    marginBottom: -200,
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: widthPercentageToDP('100')
   },
   dot: {
-    marginBottom: scale(380)
+    bottom: height / 3.5,
+    backgroundColor: '#979797',
   },
   activeDot: {
-    marginBottom: scale(380)
+    bottom: height / 3.5,
+    backgroundColor: '#000000'
   },
   lg: {
     alignItems: 'center',
   },
   textLg: {
-  }, 
+    color: '#000000'
+  },
   gs: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 45, 
+    height: verticalScale(48),
     marginTop: 80,
     margin: 35,
-    borderRadius: 5
+    borderRadius: 5,
+    backgroundColor: '#FFFFFF'
   },
   textGs: {
   }
