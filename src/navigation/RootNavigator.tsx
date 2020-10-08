@@ -17,7 +17,7 @@ export const RootNavigator = () => {
         <Stack.Screen
           name="Todo"
           component={TodoContainer}
-          options={{ title: 'Todo',  headerShown: false }}
+          options={{ title: 'Todo', headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
