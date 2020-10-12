@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { LoginComponent } from './User.view';
+import { LoginComponent } from './login.view';
 import {doLogin} from '@shared-state'
 
 export const LoginContainer = connect(

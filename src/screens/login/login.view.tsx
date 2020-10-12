@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Container } from 'native-base';
 import { scale, verticalScale } from '@shared-view';
 
@@ -24,6 +24,16 @@ export class LoginComponent extends Component<Props, State> {
     }
   }
 
+  handleLogin = () => {
+    // Check validation
+    if (this.state.email != "" && this.state.password != "") {
+      this.props.doLogin(this.state.email, this.state.password);
+    } else {
+      Alert.alert('Thông báo', 'Tài khoản hoăc mật khẩu là bắt buộc!!')
+    }
+  }
+
+  // TODO: signIn With Email And Password
   // doLogin = () => {
   //   auth()
   //     .signInWithEmailAndPassword(this.state.txtEmail, this.state.txtPassword)
@@ -50,7 +60,7 @@ export class LoginComponent extends Component<Props, State> {
   // }
 
   render() {
-    const { doLogin, isLoading, isLogged, username } = this.props;
+    const { isLoading, isLogged, username } = this.props;
     console.log(isLoading, isLogged, username);
     return (
       <Container style={styles.container}>
@@ -73,6 +83,7 @@ export class LoginComponent extends Component<Props, State> {
             <View>
               <TextInput
                 style={styles.userInput}
+                secureTextEntry={true}
                 placeholder='Enter your password'
                 onChangeText={(text) => this.setState({ password: text })}
                 value={this.state.password}>
@@ -85,9 +96,13 @@ export class LoginComponent extends Component<Props, State> {
             <View>
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => doLogin(this.state.email, this.state.password)}>
+                onPress={() => this.handleLogin()}>
                 <Text style={styles.buttonText}>Log In</Text>
               </TouchableOpacity>
+            </View>
+            <View>
+              <Text style={styles.textRegister}>Haven't registered for My Account yet?</Text>
+              <Text style={[styles.textRegister, { marginTop: verticalScale(5) }]}>Create you login <Text onPress={() => Alert.alert('Thông báo', 'Chuyển trang qua màn hình đăng ký!!')} style={[styles.textRegister, { color: 'blue', textDecorationLine: 'underline' }]}>here.</Text></Text>
             </View>
           </View>
         </View>
@@ -103,32 +118,29 @@ const styles = StyleSheet.create({
     fontFamily: 'AvenirNextRoundedPro-Demi',
   },
   item: {
-    height: verticalScale(50),
     width: '100%',
     fontSize: verticalScale(32),
-    marginTop: verticalScale(50),
+    marginTop: verticalScale(30),
     color: '#313131',
   },
   itemText: {
-    height: verticalScale(24),
     width: '100%',
+    marginTop: verticalScale(10),
     fontSize: verticalScale(18),
     color: '#9B9B9B',
   },
   userInput: {
     color: '#313131',
     width: '100%',
-    height: verticalScale(50),
     fontSize: verticalScale(18),
     borderBottomColor: '#707070',
     borderBottomWidth: scale(1 / 2),
   },
   userText: {
-    height: verticalScale(27),
     width: '100%',
     fontSize: verticalScale(22),
     color: '#313131',
-    marginTop: scale(40),
+    marginTop: verticalScale(40),
   },
   forgotRight: {
     flexDirection: 'row',
@@ -138,8 +150,7 @@ const styles = StyleSheet.create({
   textForgot: {
     color: '#313131',
     fontSize: verticalScale(20),
-    height: verticalScale(24),
-    marginTop: scale(20)
+    marginTop: verticalScale(20)
   },
   button: {
     backgroundColor: '#F96060',
@@ -147,15 +158,19 @@ const styles = StyleSheet.create({
     height: verticalScale(48),
     borderRadius: scale(6),
     fontSize: verticalScale(32),
-    marginTop: scale(50),
+    marginTop: verticalScale(50),
     justifyContent: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
-    height: verticalScale(50),
     width: '100%',
     fontSize: verticalScale(20),
     padding: scale(10),
     textAlign: 'center',
+  },
+  textRegister: {
+    color: '#313131',
+    fontSize: verticalScale(16),
+    marginTop: verticalScale(20)
   }
 });
