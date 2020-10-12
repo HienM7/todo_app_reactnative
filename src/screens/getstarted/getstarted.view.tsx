@@ -67,7 +67,7 @@ export class GetStartedComponent extends Component<Props> {
             <TouchableOpacity activeOpacity={1} onPress={() => index != data.length - 1 ? this.slider?.goToSlide(index + 1) : {}} style={styles.buttonGetStarted}>
               <Text style={styles.textGetStarted}>Get Started</Text>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Todo') }} style={styles.buttonLogin}>
+            <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Login') }} style={styles.buttonLogin}>
               <Text style={styles.textLogin}>Log In</Text>
             </TouchableOpacity>
           </View>
