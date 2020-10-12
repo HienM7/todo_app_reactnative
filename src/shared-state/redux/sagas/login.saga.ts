@@ -13,21 +13,19 @@ function* doLogin(action: object) {
     const doc = yield firestore().collection("Users").doc(user.uid).get();
     const username = doc.data().username;
     Alert.alert(
-      "Notifycation",
-      "Logged in successfully",
+      "Thông báo",
+      "Đăng nhập thành công",
       [
         { text: "OK", onPress: () => console.log("OK Pressed") }
       ],
       { cancelable: false }
     );
-
     yield put({ type: DO_LOGIN_SUCCESS, username });
-
   }
   catch (error) {
     Alert.alert(
-      "Notifycation",
-      "Logged failed",
+      "Thông báo",
+      "Đăng nhập không thành công",
       [
         { text: "OK", onPress: () => console.log("OK Pressed") }
       ],

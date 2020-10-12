@@ -61,7 +61,6 @@ export class LoginComponent extends Component<Props, State> {
 
   render() {
     const { isLoading, isLogged, username } = this.props;
-    console.log(isLoading, isLogged, username);
     return (
       <Container style={styles.container}>
         <View>
