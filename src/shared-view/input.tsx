@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, StyleSheet, Text, View } from 'react-native';
-import { scale } from './dimensions';
+import { moderateScale, verticalScale } from './dimensions';
 
 export interface Props {
     label?: string;
@@ -29,16 +29,14 @@ const styles = StyleSheet.create({
     userInput: {
         color: '#313131',
         width: '100%',
-        height: scale(50),
-        fontSize: scale(16),
+        fontSize: verticalScale(16),
         borderBottomColor: '#707070',
-        borderBottomWidth: scale(1 / 2),
+        borderBottomWidth: moderateScale(1),
     },
     userText: {
-        height: scale(27),
         width: '100%',
-        fontSize: scale(20),
+        fontSize: verticalScale(20),
         color: '#313131',
-        marginTop: scale(40),
+        marginTop: verticalScale(40),
     }
 });
