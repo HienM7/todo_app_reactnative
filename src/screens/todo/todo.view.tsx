@@ -14,14 +14,14 @@ import firestore from '@react-native-firebase/firestore';
 import { Todo } from '@core';
 import { scale } from '@shared-view';
 
-export interface Props {
+interface Props {
   navigation?: any;
   isLoading?: boolean;
   data?: Array<Todo>;
   getTodoList: () => void;
 }
 
-export interface State {
+interface State {
   todoList?: Array<Todo>;
 }
 

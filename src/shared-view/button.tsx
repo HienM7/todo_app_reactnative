@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Colors } from '@resources';
 import { verticalScale } from '@shared-view'
 
-export interface Props {
+interface Props {
     title: string;
     style: Object;
     textStyle: Object;

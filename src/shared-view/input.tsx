@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, StyleSheet, Text, View } from 'react-native';
 import { moderateScale, verticalScale } from './dimensions';
 
-export interface Props {
+interface Props {
     label?: string;
     placeholder?: string;
     secureTextEntry?: boolean;

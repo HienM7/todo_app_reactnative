@@ -18,7 +18,7 @@ import { ItemSlider } from '@core';
 
 const { width, height } = Dimensions.get('window');
 
-export interface Props {
+interface Props {
   navigation?: any;
 }
 

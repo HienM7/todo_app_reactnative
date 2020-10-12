@@ -1,3 +1,4 @@
-export * from './todo';
-export * from './login';
+export * from './splash';
 export * from './getstarted';
+export * from './login';
+export * from './todo';

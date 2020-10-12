@@ -3,14 +3,14 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { Container } from 'native-base';
 import { scale, verticalScale } from '@shared-view';
 
-export interface Props {
+interface Props {
   isLoading?: boolean,
   isLogged?: boolean,
   username?: string
   doLogin: (email: string, password: string) => void;
 }
 
-export interface State {
+interface State {
   email: string;
   password: string;
 }
