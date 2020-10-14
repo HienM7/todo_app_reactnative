@@ -4,17 +4,19 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  ScrollView,
+  Alert,
 } from 'react-native';
 import {Container} from 'native-base';
-import {scale} from '@shared-view';
+import {scale, verticalScale} from '@shared-view';
 
 export interface Props {
   doRegister: (email: string, password: string, username: string) => void;
 }
 
 export interface State {
-  email: string,
+  email: string;
   username: string;
   password: string;
   confirmPassword: string;
@@ -34,36 +36,75 @@ export class RegisterComponent extends Component<Props, State> {
   setValue(property: string, value: any) {
     this.setState({
       ...this.state,
-      [property]: value
+      [property]: value,
     });
   }
 
-  checkAndDoRegister = (email :string, password: string, confirmPassword: string, username: string) => {
-    const { doRegister } = this.props;
-    if (!email || !password || !confirmPassword || !username ) {
+  checkAndDoRegister = () => {
+    const {doRegister} = this.props;
+    const {email, password, confirmPassword, username} = this.state;
+    if (!email || !password || !confirmPassword || !username) {
+      Alert.alert("Please type all the field");
       return;
     }
     if (password !== confirmPassword) {
+      Alert.alert("Your password doesn't match");
       return;
     }
     doRegister(email, password, username);
-  }
+  };
 
   render() {
     const {username, password, confirmPassword, email} = this.state;
     return (
-      <Container style={styles.container}>
-        <View style={{flex: 1}}>
-          <TextInput value={username} onChangeText={(value) => this.setValue('username', value)} placeholder="username"/>
-          <TextInput value={email} onChangeText={(value) => this.setValue('email', value)} placeholder="email"/>
-          <TextInput value={password} onChangeText={(value) => this.setValue('password', value)} placeholder="password"/>
-          <TextInput value={confirmPassword} onChangeText={(value) => this.setValue('confirmPassword', value)} placeholder="confirm your password"/>
-          <TouchableOpacity onPress={() => this.checkAndDoRegister(email, password, confirmPassword, username)} >
-            <Text>
-              Login
-            </Text>
-          </TouchableOpacity>
-        </View>
+      <Container style={styles.container} >
+        <ScrollView style={styles.scrollView}>
+          <View>
+            <Text style={styles.headerText}>Register</Text>
+            <Text style={styles.headerDescription}>Please register to continue</Text>
+          </View>
+          <View>
+            <View>
+              <Text style={styles.userText}>Username</Text>
+              <TextInput
+                style={styles.userInput}
+                placeholder="Enter your username"
+                onChangeText={value => this.setValue("username", value)}
+                value={username}/>
+            </View>
+            <View>
+              <Text style={styles.userText}>Email</Text>
+              <TextInput
+                style={styles.userInput}
+                placeholder="Enter your email"
+                onChangeText={value => this.setValue("email", value)}
+                value={email}/>
+            </View>
+            <View>
+            <Text style={styles.userText}>Password</Text>
+              <TextInput
+                style={styles.userInput}
+                placeholder="Enter your password"
+                onChangeText={value => this.setValue("password", value)}
+                value={password}/>
+            </View>
+            <View>
+              <Text style={styles.userText}>Confirm Password</Text>
+              <TextInput
+                style={styles.userInput}
+                placeholder="Confirm your password"
+                onChangeText={value => this.setValue("confirmPassword", value)}
+                value={confirmPassword}/>
+            </View>
+            <View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.checkAndDoRegister()}>
+                <Text style={styles.buttonText}>Register</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
       </Container>
     );
   }
@@ -71,12 +112,57 @@ export class RegisterComponent extends Component<Props, State> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: scale(10),
+    fontFamily: 'AvenirNextRoundedPro-Demi',
+    backgroundColor: "#FFF",
+    flex:1,
   },
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+  scrollView: {
+    padding: scale(20),
+  },
+  headerText: {
+    height: verticalScale(50),
+    width: '100%',
+    fontSize: verticalScale(32),
+    marginTop: verticalScale(50),
+    color: '#313131',
+  },
+  headerDescription: {
+    height: verticalScale(24),
+    width: '100%',
+    fontSize: verticalScale(18),
+    color: '#9B9B9B',
+  },
+  userInput: {
+    color: '#313131',
+    paddingHorizontal: 0,
+    width: '100%',
+    height: verticalScale(50),
+    fontSize: verticalScale(18),
+    borderBottomColor: '#707070',
+    borderBottomWidth: scale(1 / 2),
+  },
+  userText: {
+    height: verticalScale(27),
+    width: '100%',
+    fontSize: verticalScale(20),
+    color: '#313131',
+    marginTop: scale(40),
+  },
+  button: {
+    backgroundColor: '#F96060',
+    width: '100%',
+    height: verticalScale(48),
+    borderRadius: scale(6),
+    fontSize: verticalScale(32),
+    marginVertical: scale(50),
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    height: verticalScale(50),
+    width: '100%',
+    fontSize: verticalScale(20),
+    padding: scale(10),
+    textAlign: 'center',
   },
 });
