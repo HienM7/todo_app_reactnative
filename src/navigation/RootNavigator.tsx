@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TodoContainer, SplashContainer, GetStartedContainer } from '@screens';
+import { TodoContainer, SplashContainer, GetStartedContainer, RegisterContainer } from '@screens';
 
 const Stack = createStackNavigator();
 
@@ -9,6 +9,11 @@ export const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Register"
+          component={RegisterContainer}
+          options={{ title: 'Register', headerShown: false }}
+        />
         <Stack.Screen
           name="Splash"
           component={SplashContainer}
