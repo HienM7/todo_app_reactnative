@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import firestore from '@react-native-firebase/firestore';
 import { GET_TODO_LIST, GET_TODO_LIST_FAIL, GET_TODO_LIST_SUCCESS } from '../actions';
-import { Todo } from 'src/core/entity';
+import { Todo } from '@core';
 
 function* getTodoList() {
   try {
