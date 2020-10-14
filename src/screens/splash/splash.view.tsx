@@ -6,10 +6,10 @@ import {
   View
 } from 'react-native';
 import { Container } from 'native-base';
-import { scale, verticalScale } from '@shared-view';
+import { verticalScale } from '@shared-view';
 import { LOGO_AKING } from '@assets';
 
-export interface Props {
+interface Props {
   navigation?: any;
 }
 
