@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import { todoReducer } from './reducers';
+import { todoReducer, userReducer } from './reducers';
 
 const rootReducer = combineReducers({
   todo: todoReducer,
+  user: userReducer,
 });
 
 export default rootReducer;
