@@ -1,3 +1,4 @@
+import {Alert} from 'react-native';
 import { put, takeLatest } from 'redux-saga/effects';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
@@ -22,9 +23,25 @@ function* doRegister(action: Action) {
           password: password,
       });
     yield put({ type: REGISTER_SUCCESS, username});
+    Alert.alert(
+      "Thông báo",
+      "Đăng ký thành công",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
   }
   catch (error) {
     yield put({ type: REGISTER_FAIL, error: error });
+    Alert.alert(
+      "Thông báo",
+      "Đăng ký thất bại",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
   }
 }
 

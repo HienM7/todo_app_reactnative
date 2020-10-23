@@ -10,11 +10,6 @@ export const RootNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Register"
-          component={RegisterContainer}
-          options={{ title: 'Register', headerShown: false }}
-        />
-        <Stack.Screen
           name="Splash"
           component={SplashContainer}
           options={{ title: 'Splash', headerShown: false }}
@@ -31,6 +26,11 @@ export const RootNavigator = () => {
             title: '',
             headerStyle: { backgroundColor: '#fff', elevation: 0, shadowOpacity: 0, shadowColor: 'transparent', borderBottomWidth: 0 }
           }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterContainer}
+          options={{ title: 'Register', headerShown: false }}
         />
         <Stack.Screen
           name="Todo"

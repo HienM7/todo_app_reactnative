@@ -12,5 +12,3 @@ export const doRegister = (email: string, password: string, username: string) =>
   username,
 });
 
-
-

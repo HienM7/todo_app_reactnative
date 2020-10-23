@@ -3,7 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { Container } from 'native-base';
 import { scale, verticalScale } from '@shared-view';
 
+
 interface Props {
+  navigation: any,
   isLoading?: boolean,
   isLogged?: boolean,
   username?: string
@@ -59,8 +61,9 @@ export class LoginComponent extends Component<Props, State> {
   //     });
   // }
 
+
   render() {
-    const { isLoading, isLogged, username } = this.props;
+    const { isLoading, isLogged, username, navigation } = this.props;
     return (
       <Container style={styles.container}>
         <View>
@@ -101,7 +104,7 @@ export class LoginComponent extends Component<Props, State> {
             </View>
             <View>
               <Text style={styles.textRegister}>Haven't registered for My Account yet?</Text>
-              <Text style={[styles.textRegister, { marginTop: verticalScale(5) }]}>Create you login <Text onPress={() => Alert.alert('Thông báo', 'Chuyển trang qua màn hình đăng ký!!')} style={[styles.textRegister, { color: 'blue', textDecorationLine: 'underline' }]}>here.</Text></Text>
+              <Text style={[styles.textRegister, { marginTop: verticalScale(5) }]}>Create you login <Text onPress={() => navigation.navigate('Register')} style={[styles.textRegister, { color: 'blue', textDecorationLine: 'underline' }]}>here.</Text></Text>
             </View>
           </View>
         </View>

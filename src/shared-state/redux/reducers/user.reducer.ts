@@ -9,7 +9,6 @@ const INITIAL_STATE: UserState = {
 
 // reducer
 export const userReducer = (state = INITIAL_STATE, action: any) => {
-  console.log('action: ', action);
   switch (action.type) {
     case REGISTER:
       return Object.assign(

@@ -44,11 +44,25 @@ export class RegisterComponent extends Component<Props, State> {
     const {doRegister} = this.props;
     const {email, password, confirmPassword, username} = this.state;
     if (!email || !password || !confirmPassword || !username) {
-      Alert.alert("Please type all the field");
+      Alert.alert(
+        "Thông báo",
+        "Please type all fields",
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+      );
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert("Your password doesn't match");
+      Alert.alert(
+        "Thông báo",
+        "Your password doesn't match",
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+      );
       return;
     }
     doRegister(email, password, username);
@@ -86,7 +100,9 @@ export class RegisterComponent extends Component<Props, State> {
                 style={styles.userInput}
                 placeholder="Enter your password"
                 onChangeText={value => this.setValue("password", value)}
-                value={password}/>
+                value={password}
+                secureTextEntry={true}
+                />
             </View>
             <View>
               <Text style={styles.userText}>Confirm Password</Text>
@@ -94,7 +110,9 @@ export class RegisterComponent extends Component<Props, State> {
                 style={styles.userInput}
                 placeholder="Confirm your password"
                 onChangeText={value => this.setValue("confirmPassword", value)}
-                value={confirmPassword}/>
+                value={confirmPassword}
+                secureTextEntry={true}
+                />
             </View>
             <View>
               <TouchableOpacity
@@ -118,17 +136,15 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     padding: scale(20),
+    backgroundColor: "#FFF",
+
   },
   headerText: {
-    height: verticalScale(50),
-    width: '100%',
     fontSize: verticalScale(32),
     marginTop: verticalScale(50),
     color: '#313131',
   },
   headerDescription: {
-    height: verticalScale(24),
-    width: '100%',
     fontSize: verticalScale(18),
     color: '#9B9B9B',
   },
@@ -136,14 +152,11 @@ const styles = StyleSheet.create({
     color: '#313131',
     paddingHorizontal: 0,
     width: '100%',
-    height: verticalScale(50),
     fontSize: verticalScale(18),
     borderBottomColor: '#707070',
     borderBottomWidth: scale(1 / 2),
   },
   userText: {
-    height: verticalScale(27),
-    width: '100%',
     fontSize: verticalScale(20),
     color: '#313131',
     marginTop: scale(40),
@@ -153,14 +166,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: verticalScale(48),
     borderRadius: scale(6),
-    fontSize: verticalScale(32),
     marginVertical: scale(50),
     justifyContent: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
-    height: verticalScale(50),
-    width: '100%',
     fontSize: verticalScale(20),
     padding: scale(10),
     textAlign: 'center',
